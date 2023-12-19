@@ -1,21 +1,21 @@
 from django.db import models
 
 LOCATION_CHOICES = (
-    ('LRBT', 'living room black table & around'),
-    ('LRH', 'living room hanging'),
-    ('LRWT', 'living room white tables'),
-    ('BS', 'bookshelves'),
-    ('OWS', 'outside window sill'),
-    ('IWS', 'inside window sill - living room'),
-    ('B1', 'bedroom 1'),
-    ('B2', 'bedroom 2'),
-    ('SC', 'special care')
+    ('living_room_black', 'living room black table & around'),
+    ('living_room_hanging', 'living room hanging'),
+    ('living_room_white', 'living room white tables'),
+    ('bookshelves', 'bookshelves'),
+    ('window_outside', 'outside window sill'),
+    ('window_inside', 'inside window sill - living room'),
+    ('bedroom1', 'bedroom 1'),
+    ('bedroom2', 'bedroom 2'),
+    ('special_care', 'special care')
 )
 
 
 class Plant(models.Model):
     name = models.CharField(max_length=200, default="", blank=True)
-    location = models.CharField(choices=LOCATION_CHOICES, default='LRWT')
+    location = models.CharField(max_length=100, choices=LOCATION_CHOICES, default='living_room_white')
     frequency = models.IntegerField(default=1, blank=True, null=True)
     instructions = models.TextField(default="", blank=True)
     start = models.DateTimeField(blank=True, null=True)
