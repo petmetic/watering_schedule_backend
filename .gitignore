@@ -5,7 +5,7 @@ db.sqlite3
 .DS_Store
 localsettings.py
 .envrc
-# backend/__pycache__/
-# web/__pycache__/
+ backend/__pycache__/
+ web/__pycache__/
 
 
