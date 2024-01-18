@@ -14,7 +14,7 @@ LOCATION_CHOICES = (
 
 
 class Plant(models.Model):
-    name = models.CharField(max_length=200, default="", blank=True)
+    name = models.CharField(max_length=200, default="")
     location = models.CharField(max_length=100, choices=LOCATION_CHOICES, default='living_room_white')
     frequency = models.IntegerField(default=1, blank=True, null=True)
     instructions = models.TextField(default="", blank=True)
@@ -23,3 +23,6 @@ class Plant(models.Model):
 
     added = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['name']
