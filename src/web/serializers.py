@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class PlantSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Plant
-        fields = ['id', 'name', 'location', 'frequency', 'instructions', 'start', 'end', 'added', 'changed']
+        fields = ['id', 'name', 'location', 'frequency', 'volume', 'instructions', 'start', 'end', 'added', 'changed']
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
