@@ -29,6 +29,7 @@ class Plant(models.Model):
     instructions = models.TextField(default="", blank=True)
     start = models.DateTimeField(blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
+    status = models.BooleanField(null=True)
 
     added = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
