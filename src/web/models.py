@@ -19,6 +19,10 @@ WATER_VOLUME = (
     ('400_ml', '400 ml'),
     ('500_ml', '500 ml')
 )
+STATUS = (
+    ('watered', 'watered'),
+    ('needs_watering', 'needs watering')
+)
 
 
 class Plant(models.Model):
@@ -29,7 +33,7 @@ class Plant(models.Model):
     instructions = models.TextField(default="", blank=True)
     start = models.DateTimeField(blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
-    status = models.BooleanField(null=True)
+    status = models.CharField(max_length=100, choices=STATUS, default='needs_watering')
 
     added = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
