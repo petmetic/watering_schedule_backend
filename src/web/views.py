@@ -11,7 +11,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('username')
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
 
 class PlantViewSet(viewsets.ModelViewSet):
@@ -20,5 +20,5 @@ class PlantViewSet(viewsets.ModelViewSet):
     """
     queryset = Plant.objects.all()
     serializer_class = PlantSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
