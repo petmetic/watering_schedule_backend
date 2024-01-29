@@ -32,6 +32,7 @@ class Plant(models.Model):
     volume = models.CharField(max_length=100, choices=WATER_VOLUME, default='100_ml')
     instructions = models.TextField(default="", blank=True)
     start = models.DateTimeField(blank=True, null=True)
+    photourl = models.CharField(max_length=200, default="")
     end = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=100, choices=STATUS, default='needs_watering')
 
