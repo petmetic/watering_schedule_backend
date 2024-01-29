@@ -1,8 +1,9 @@
 venv
-__pychace__
+__pycache__
 .idea
 db.sqlite3
 .DS_Store
 localsettings.py
 .envrc
- backend/__pycache__/
+
+
