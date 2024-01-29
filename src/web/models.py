@@ -1,31 +1,31 @@
 from django.db import models
 
-LOCATION_CHOICES = (
-    ('living_room_black', 'living room black table & around'),
-    ('living_room_hanging', 'living room hanging'),
-    ('living_room_white', 'living room white tables'),
-    ('bookshelves', 'bookshelves'),
-    ('window_outside', 'outside window sill'),
-    ('window_inside', 'inside window sill - living room'),
-    ('bedroom1', 'bedroom 1'),
-    ('bedroom2', 'bedroom 2'),
-    ('special_care', 'special care')
-)
-
-WATER_VOLUME = (
-    ('100_ml', '100 ml'),
-    ('200_ml', '200 ml'),
-    ('300_ml', '300 ml'),
-    ('400_ml', '400 ml'),
-    ('500_ml', '500 ml')
-)
-STATUS = (
-    ('watered', 'watered'),
-    ('needs_watering', 'needs watering')
-)
-
 
 class Plant(models.Model):
+    LOCATION_CHOICES = (
+        ('living_room_black', 'living room black table & around'),
+        ('living_room_hanging', 'living room hanging'),
+        ('living_room_white', 'living room white tables'),
+        ('bookshelves', 'bookshelves'),
+        ('window_outside', 'outside window sill'),
+        ('window_inside', 'inside window sill - living room'),
+        ('bedroom1', 'bedroom 1'),
+        ('bedroom2', 'bedroom 2'),
+        ('special_care', 'special care')
+    )
+
+    WATER_VOLUME = (
+        ('100_ml', '100 ml'),
+        ('200_ml', '200 ml'),
+        ('300_ml', '300 ml'),
+        ('400_ml', '400 ml'),
+        ('500_ml', '500 ml')
+    )
+    STATUS = (
+        ('watered', 'watered'),
+        ('needs_watering', 'needs watering')
+    )
+
     name = models.CharField(max_length=200, default="")
     location = models.CharField(max_length=100, choices=LOCATION_CHOICES, default='living_room_white')
     frequency = models.IntegerField(default=1, blank=True, null=True)
