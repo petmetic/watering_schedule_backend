@@ -52,4 +52,4 @@ jobs:
     - name: Test
       run: |
         ./manage.py test web
-      working-directory: ./src
+      working-directory: ./src/web
