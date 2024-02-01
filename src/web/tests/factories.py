@@ -1,6 +1,6 @@
 import factory
 
-from .. import models
+from web import models
 from django.contrib.auth.models import User
 import pytz
 

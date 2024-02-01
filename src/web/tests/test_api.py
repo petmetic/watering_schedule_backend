@@ -1,4 +1,4 @@
-from .factories import (UserFactory, PlantFactory)
+from web.tests.factories import (UserFactory, PlantFactory)
 
 from rest_framework.test import APITestCase
 from django.urls import reverse
@@ -38,8 +38,17 @@ class TestPlantAPIView(APITestCase):
 
         response_data = json.loads(response.content)
 
-        self.assertEqual(expected_content['results'][0]['id'], response_data['results'][0]['id'])
-        self.assertEqual(expected_content['results'][0]['location'], response_data['results'][0]['location'])
-        self.assertEqual(expected_content['results'][0]['name'], response_data['results'][0]['name'])
+        id_expected = expected_content['results'][0]['id']
+        id_api = response_data['results'][0]['id']
+
+        location_expected = expected_content['results'][0]['location']
+        location_api = response_data['results'][0]['location']
+
+        name_expected = expected_content['results'][0]['name']
+        name_api = response_data['results'][0]['name']
+
+        self.assertEqual(id_expected, id_api)
+        self.assertEqual(location_expected, location_api)
+        self.assertEqual(name_expected, name_api)
 
 
