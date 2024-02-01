@@ -6,13 +6,15 @@ import pytz
 
 tz = pytz.timezone("Europe/Ljubljana")
 
+
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
 
-    first_name = factory.Sequence(lambda n: 'Agent %03d' % n)
-    username = factory.Sequence(lambda n: 'Agent %03d' % n)
-    email = factory.Sequence(lambda n: 'Agent %03d' % n)
+    first_name = factory.Sequence(lambda n: "Agent %03d" % n)
+    username = factory.Sequence(lambda n: "Agent %03d" % n)
+    email = factory.Sequence(lambda n: "Agent %03d" % n)
+
 
 class PlantFactory(factory.django.DjangoModelFactory):
     class Meta:
