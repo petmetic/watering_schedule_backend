@@ -1,8 +1,9 @@
-from web.tests.factories import UserFactory, PlantFactory
-
-from rest_framework.test import APITestCase
-from django.urls import reverse
 import json
+
+from django.urls import reverse
+from rest_framework.test import APITestCase
+
+from web.tests.factories import PlantFactory, UserFactory
 
 
 class TestPlantAPIView(APITestCase):

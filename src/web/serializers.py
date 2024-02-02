@@ -1,6 +1,7 @@
-from rest_framework import serializers
-from web.models import Plant
 from django.contrib.auth.models import User
+from rest_framework import serializers
+
+from web.models import Plant
 
 
 class PlantSerializer(serializers.HyperlinkedModelSerializer):

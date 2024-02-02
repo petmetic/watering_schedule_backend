@@ -1,8 +1,8 @@
 import factory
+import pytz
+from django.contrib.auth.models import User
 
 from web import models
-from django.contrib.auth.models import User
-import pytz
 
 tz = pytz.timezone("Europe/Ljubljana")
 
