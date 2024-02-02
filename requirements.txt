@@ -2,7 +2,9 @@ Django~=5.0
 djangorestframework~=3.14.0
 django-filter~=23.5
 factory_boy
+isort
 markdown~=3.5.1
 Pillow
+pre-commit
 pytz
 requests

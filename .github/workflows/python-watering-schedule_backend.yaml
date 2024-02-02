@@ -25,31 +25,35 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.11.7
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.11.7
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        cp src/backend/testsettings.py src/backend/localsettings.py
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
-    - name: Black
-      uses: psf/black@stable
-      with:
-        options: "--check --verbose"
-        src: "./src"
-    - name: Run migrations
-      run: python src/manage.py migrate
-    - name: Test
-      run: |
-        ./manage.py test web
-      working-directory: ./src
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.7
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          cp src/backend/testsettings.py src/backend/localsettings.py
+      - name: Isort
+        uses: isort/isort-action@master
+        with:
+          requirementsFiles: "requirements.txt"
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
+      - name: Black
+        uses: psf/black@stable
+        with:
+          options: "--check --verbose"
+          src: "./src"
+      - name: Run migrations
+        run: python src/manage.py migrate
+      - name: Test
+        run: |
+          ./manage.py test web
+        working-directory: ./src
