@@ -136,6 +136,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "../media")
 
 UPLOADED_FILES_USE_URL = True
 
+CORS_ALLOW_HEADERS = (
+    *default_headers,
+    "pragma",
+    "cache-control",
+)
+
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 
 CORS_ALLOWED_METHODS = (
@@ -145,10 +151,4 @@ CORS_ALLOWED_METHODS = (
     "PATCH",
     "POST",
     "PUT",
-)
-
-CORS_ALLOW_HEADERS = (
-    *default_headers,
-    "pragma",
-    "cache-control",
 )
