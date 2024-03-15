@@ -1,7 +1,5 @@
 from django.db import models
 
-from backend.settings import UPLOADED_FILES_USE_URL
-
 
 class Plant(models.Model):
     LOCATION_CHOICES = (
