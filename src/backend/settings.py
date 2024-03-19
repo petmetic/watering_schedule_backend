@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,12 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.admindocs",
     "rest_framework",
+    "corsheaders",
     "web",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -132,3 +135,20 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "../media")
 
 UPLOADED_FILES_USE_URL = True
+
+CORS_ALLOW_HEADERS = (
+    *default_headers,
+    "pragma",
+    "cache-control",
+)
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+
+CORS_ALLOWED_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
