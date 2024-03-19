@@ -25,16 +25,15 @@ class Plant(models.Model):
 
     name = models.CharField(max_length=200, default="")
     location = models.CharField(
-        max_length=100, choices=LOCATION_CHOICES, default="living_room_white"
+        max_length=100, choices=LOCATION_CHOICES, default="living room white tables"
     )
     frequency = models.IntegerField(default=1, blank=True, null=True)
-    volume = models.CharField(max_length=100, choices=WATER_VOLUME, default="100_ml")
+    volume = models.CharField(max_length=100, choices=WATER_VOLUME, default="100 ml")
     instructions = models.TextField(default="", blank=True)
     start = models.DateTimeField(blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
-    status = models.CharField(max_length=100, choices=STATUS, default="needs_watering")
-    photo = models.ImageField(upload_to="uploads/", default="")
-
+    status = models.CharField(max_length=100, choices=STATUS, default="needs watering")
+    photo = models.ImageField(max_length=None, default="")
     added = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
 
