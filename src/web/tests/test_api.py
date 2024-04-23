@@ -52,3 +52,11 @@ class TestPlantAPIView(APITestCase):
         self.assertEqual(id_expected, id_api)
         self.assertEqual(location_expected, location_api)
         self.assertEqual(name_expected, name_api)
+
+    def test_post(self):
+        plant = PlantFactory.build(
+            id=self.plant.id,
+            name="Pilea",
+        )
+
+        data = {}
