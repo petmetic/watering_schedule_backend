@@ -8,13 +8,14 @@ from web.tests.factories import PlantFactory, UserFactory
 
 class TestPlantAPIView(APITestCase):
     def setUp(self):
-        self.url = reverse("plant-list")  # use the view url from the admin docs
+        self.url_get = reverse("plant-list")  # use the view url from the admin docs
+        self.url_post = reverse("plant-list")  # use the view url from the admin docs
         self.plant = PlantFactory()
         self.user = UserFactory()
         self.client.force_login(self.user)
 
     def test_get(self):
-        response = self.client.get(self.url)
+        response = self.client.get(self.url_get)
         response.render()
         self.assertEquals(200, response.status_code)
 
@@ -33,7 +34,6 @@ class TestPlantAPIView(APITestCase):
                     "start": self.plant.start,
                     "end": self.plant.end,
                     "status": "needs_watering",
-                    "photo": None,
                 }
             ],
         }
@@ -54,9 +54,32 @@ class TestPlantAPIView(APITestCase):
         self.assertEqual(name_expected, name_api)
 
     def test_post(self):
-        plant = PlantFactory.build(
-            id=self.plant.id,
+        self.plant2 = PlantFactory.build(
             name="Pilea",
         )
 
-        data = {}
+        data = {
+            "name": self.plant2.name,
+            "location": self.plant2.location,
+            "frequency": self.plant2.frequency,
+            "volume": self.plant2.volume,
+            "instructions": self.plant2.instructions,
+            "photo": self.plant2.photo,
+            "status": "needs_watering",
+            "start": "2024-04-01T00:00:00+02:00",
+            "end": "2024-04-30T00:00:00+02:00",
+            "added": "2024-04-23T11:01:51.139599+02:00",
+            "changed": "2024-04-23T11:01:51.139647+02:00",
+        }
+
+        expected_response_from_api = {
+            "name": self.plant2.name,
+            "location": self.plant2.location,
+            "frequency": self.plant2.frequency,
+            "volume": self.plant2.volume,
+            "instructions": self.plant2.instructions,
+        }
+
+        resp = self.client.post(self.url_post, data=data)
+        print(resp.content)
+        self.assertEqual(resp.status_code, 201)
