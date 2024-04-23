@@ -19,10 +19,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-from rest_framework import routers
-
-
-router = routers.DefaultRouter()
 
 
 # Wire up our API using automatic URL routing.
@@ -31,11 +27,8 @@ router = routers.DefaultRouter()
 urlpatterns = [
     path("admin/doc/", include("django.contrib.admindocs.urls")),
     path("admin/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
-    path("", include(router.urls)),
+    path("", include("web.urls")),
 ]
-
-urlpatterns += router.urls
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
