@@ -16,6 +16,7 @@ class TestPlantAPIView(APITestCase):
 
     def test_get(self):
         response = self.client.get(self.url_get)
+        print(f"response get: {response.content}")
         response.render()
         self.assertEquals(200, response.status_code)
 
