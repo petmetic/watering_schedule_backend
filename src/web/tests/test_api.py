@@ -57,14 +57,13 @@ class TestPlantAPIView(APITestCase):
         self.plant2 = PlantFactory.build(
             name="Pilea",
         )
-
         data = {
             "name": self.plant2.name,
             "location": self.plant2.location,
             "frequency": self.plant2.frequency,
             "volume": self.plant2.volume,
             "instructions": self.plant2.instructions,
-            "photo": self.plant2.photo,
+            "photo": self.plant2.photo.url,
             "status": "needs_watering",
             "start": "2024-04-01T00:00:00+02:00",
             "end": "2024-04-30T00:00:00+02:00",
@@ -79,7 +78,7 @@ class TestPlantAPIView(APITestCase):
             "volume": self.plant2.volume,
             "instructions": self.plant2.instructions,
         }
-
+        print(data)
         resp = self.client.post(self.url_post, data=data)
         print(resp.content)
         self.assertEqual(resp.status_code, 201)
