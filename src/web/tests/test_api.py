@@ -34,6 +34,7 @@ class TestPlantAPIView(APITestCase):
                     "start": self.plant.start,
                     "end": self.plant.end,
                     "status": "needs_watering",
+                    "photo": self.plant.photo,
                 }
             ],
         }
