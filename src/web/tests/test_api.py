@@ -104,7 +104,8 @@ class TestPlantAPIView(APITestCase):
             volume_expected = expected_response_from_api["volume"]
             volume_api = resp_data["volume"]
 
-            # self.assertEqual(id_expected, id_api)
+            # id assert fails. WHY?
+            self.assertEqual(id_expected, id_api)
             self.assertEqual(location_expected, location_api)
             self.assertEqual(name_expected, name_api)
             self.assertEqual(volume_expected, volume_api)
