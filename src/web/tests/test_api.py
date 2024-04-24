@@ -57,28 +57,29 @@ class TestPlantAPIView(APITestCase):
         self.plant2 = PlantFactory.build(
             name="Pilea",
         )
-        data = {
-            "name": self.plant2.name,
-            "location": self.plant2.location,
-            "frequency": self.plant2.frequency,
-            "volume": self.plant2.volume,
-            "instructions": self.plant2.instructions,
-            "photo": self.plant2.photo.url,
-            "status": "needs_watering",
-            "start": "2024-04-01T00:00:00+02:00",
-            "end": "2024-04-30T00:00:00+02:00",
-            "added": "2024-04-23T11:01:51.139599+02:00",
-            "changed": "2024-04-23T11:01:51.139647+02:00",
-        }
+        with open("../media/placeholder_square_200.png", "rb") as image_file:
+            data = {
+                "name": self.plant2.name,
+                "location": self.plant2.location,
+                "frequency": self.plant2.frequency,
+                "volume": self.plant2.volume,
+                "instructions": self.plant2.instructions,
+                "photo": image_file,
+                "status": "needs_watering",
+                "start": "2024-04-01T00:00:00+02:00",
+                "end": "2024-04-30T00:00:00+02:00",
+                "added": "2024-04-23T11:01:51.139599+02:00",
+                "changed": "2024-04-23T11:01:51.139647+02:00",
+            }
 
-        expected_response_from_api = {
-            "name": self.plant2.name,
-            "location": self.plant2.location,
-            "frequency": self.plant2.frequency,
-            "volume": self.plant2.volume,
-            "instructions": self.plant2.instructions,
-        }
-        print(data)
-        resp = self.client.post(self.url_post, data=data)
-        print(resp.content)
-        self.assertEqual(resp.status_code, 201)
+            expected_response_from_api = {
+                "name": self.plant2.name,
+                "location": self.plant2.location,
+                "frequency": self.plant2.frequency,
+                "volume": self.plant2.volume,
+                "instructions": self.plant2.instructions,
+            }
+
+            resp = self.client.post(self.url_post, data=data, format="multipart")
+            print(resp.content)
+            self.assertEqual(resp.status_code, 201)
