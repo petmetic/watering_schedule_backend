@@ -56,6 +56,10 @@ class TestPlantAPIView(APITestCase):
     def test_post(self):
         self.plant2 = PlantFactory.build(
             name="Pilea",
+            volume="100_ml",
+            instructions="water with can",
+            frequency="14",
+            location="bedroom1",
         )
         with open("../media/placeholder_square_200.png", "rb") as image_file:
             data = {
@@ -73,13 +77,34 @@ class TestPlantAPIView(APITestCase):
             }
 
             expected_response_from_api = {
+                "id": self.plant2.id,
                 "name": self.plant2.name,
                 "location": self.plant2.location,
                 "frequency": self.plant2.frequency,
                 "volume": self.plant2.volume,
                 "instructions": self.plant2.instructions,
+                "status": "needs_watering",
             }
 
             resp = self.client.post(self.url_post, data=data, format="multipart")
-            print(resp.content)
+
+            resp_data = json.loads(resp.content)
+
             self.assertEqual(resp.status_code, 201)
+
+            id_expected = expected_response_from_api["id"]
+            id_api = resp_data["id"]
+
+            location_expected = expected_response_from_api["location"]
+            location_api = resp_data["location"]
+
+            name_expected = expected_response_from_api["name"]
+            name_api = resp_data["name"]
+
+            volume_expected = expected_response_from_api["volume"]
+            volume_api = resp_data["volume"]
+
+            # self.assertEqual(id_expected, id_api)
+            self.assertEqual(location_expected, location_api)
+            self.assertEqual(name_expected, name_api)
+            self.assertEqual(volume_expected, volume_api)
