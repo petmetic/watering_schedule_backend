@@ -20,6 +20,7 @@ class TestPlantAPIView(APITestCase):
         Testing if after making a GET request on a plant-list, the response should return correct information.
         """
         response = self.client.get(self.url_get)
+        response.render()
         self.assertEquals(200, response.status_code)
 
         expected_content = {
@@ -71,6 +72,7 @@ class TestPlantAPIView(APITestCase):
             frequency="14",
             location="bedroom1",
         )
+
         with open(
             "./web/tests/assets/placeholder_square_10-10.png", "rb"
         ) as image_file:
