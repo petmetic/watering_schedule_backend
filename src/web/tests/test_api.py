@@ -73,6 +73,7 @@ class TestPlantAPIView(APITestCase):
             frequency="14",
             location="bedroom1",
         )
+
         with open(
             "./web/tests/assets/placeholder_square_10-10.png", "rb"
         ) as image_file:
@@ -127,4 +128,5 @@ class TestPlantAPIView(APITestCase):
 
             # check if new plant is written in database
             self.assertEqual(Plant.objects.all().count(), plant_count + 1)
+
 
