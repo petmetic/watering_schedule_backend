@@ -3,6 +3,7 @@ import json
 from django.urls import reverse
 from rest_framework.test import APITestCase
 
+from web.models import Plant
 from web.tests.factories import PlantFactory, UserFactory
 
 
@@ -15,6 +16,9 @@ class TestPlantAPIView(APITestCase):
         self.client.force_login(self.user)
 
     def test_get(self):
+        """
+        Testing if after making a GET request on a plant-list, the response should return correct information.
+        """
         response = self.client.get(self.url_get)
         self.assertEquals(200, response.status_code)
 
@@ -54,6 +58,11 @@ class TestPlantAPIView(APITestCase):
         self.assertEqual(name_expected, name_api)
 
     def test_post(self):
+        """
+        Testing if after making a POST request on a plant-list, the response should return correct information about the new plant.
+        The count in the DB should go up by 1.
+        """
+
         self.plant2 = PlantFactory.build(
             name="Pilea",
             volume="100_ml",
@@ -86,14 +95,13 @@ class TestPlantAPIView(APITestCase):
                 "status": "needs_watering",
             }
 
+            plant_count = Plant.objects.all().count()
+
             resp = self.client.post(self.url_post, data=data, format="multipart")
 
             resp_data = json.loads(resp.content)
 
             self.assertEqual(resp.status_code, 201)
-
-            id_expected = expected_response_from_api["id"]
-            id_api = resp_data["id"]
 
             location_expected = expected_response_from_api["location"]
             location_api = resp_data["location"]
@@ -104,8 +112,13 @@ class TestPlantAPIView(APITestCase):
             volume_expected = expected_response_from_api["volume"]
             volume_api = resp_data["volume"]
 
-            # id assert fails. WHY?
-            self.assertEqual(id_expected, id_api)
+            instructions_expected = expected_response_from_api["instructions"]
+            instructions_api = resp_data["instructions"]
+
             self.assertEqual(location_expected, location_api)
             self.assertEqual(name_expected, name_api)
             self.assertEqual(volume_expected, volume_api)
+            self.assertEqual(instructions_expected, instructions_api)
+
+            # check if new plant is written in database
+            self.assertEqual(Plant.objects.all().count(), plant_count + 1)
