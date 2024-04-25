@@ -2,7 +2,6 @@ django-cors-headers
 Django~=5.0
 djangorestframework~=3.14.0
 django-filter~=23.5
-docutils
 factory_boy
 isort
 markdown~=3.5.1
