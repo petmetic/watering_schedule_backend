@@ -16,7 +16,6 @@ class TestPlantAPIView(APITestCase):
         self.client.force_login(self.user)
 
     def test_get(self):
-
         """
         Testing if after making a GET request on a plant-list, the response should return correct information.
         """
@@ -128,5 +127,3 @@ class TestPlantAPIView(APITestCase):
 
             # check if new plant is written in database
             self.assertEqual(Plant.objects.all().count(), plant_count + 1)
-
-
