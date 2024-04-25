@@ -59,7 +59,8 @@ class TestPlantAPIView(APITestCase):
 
     def test_post(self):
         """
-        Testing if after making a POST request on a plant-list, the response should return correct information about the new plant.
+        Testing if after making a POST request on a plant-list,
+        the response should return correct information about the new plant.
         The count in the DB should go up by 1.
         """
 
