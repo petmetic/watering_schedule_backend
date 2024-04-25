@@ -71,7 +71,9 @@ class TestPlantAPIView(APITestCase):
             frequency="14",
             location="bedroom1",
         )
-        with open("../media/placeholder_square_200.png", "rb") as image_file:
+        with open(
+            "./web/tests/assets/placeholder_square_10-10.png", "rb"
+        ) as image_file:
             data = {
                 "name": self.plant2.name,
                 "location": self.plant2.location,
