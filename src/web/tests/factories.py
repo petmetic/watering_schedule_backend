@@ -29,4 +29,9 @@ class PlantFactory(factory.django.DjangoModelFactory):
     start = factory.Faker("date_time", tzinfo=tz)  # "%Y-%m-%d %H:%M:%S"
     end = factory.Faker("date_time", tzinfo=tz)  # "%Y-%m-%d %H:%M:%S"
     status = "needs_watering"
-    photo = None
+    photo = factory.django.ImageField(
+        from_path="./web/tests/assets/placeholder_square_10-10.png",
+        color="blue",
+        width=200,
+        height=200,
+    )
