@@ -1,4 +1,4 @@
-This is thew backend part of the Watering Schedule App.
+This is the backend part of the Watering Schedule App.
 
 ## Getting started
 First, clone or fork the repo (SSH). git clone `git@github.com:petmetic/watering_schedule_backend.git`
