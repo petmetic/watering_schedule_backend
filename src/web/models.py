@@ -33,7 +33,7 @@ class Plant(models.Model):
     start = models.DateTimeField(blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=100, choices=STATUS, default="needs watering")
-    photo = models.ImageField(max_length=None, default="", upload_to="media")
+    photo = models.ImageField(max_length=None, default="", upload_to="uploads")
     added = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
 
