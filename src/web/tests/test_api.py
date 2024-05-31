@@ -37,7 +37,7 @@ class TestPlantAPIView(APITestCase):
                     "instructions": self.plant.instructions,
                     "start": self.plant.start,
                     "end": self.plant.end,
-                    "status": "needs_watering",
+                    "status": False,
                     "photo": self.plant.photo,
                 }
             ],
@@ -83,7 +83,7 @@ class TestPlantAPIView(APITestCase):
                 "volume": self.plant2.volume,
                 "instructions": self.plant2.instructions,
                 "photo": image_file,
-                "status": "needs_watering",
+                "status": False,
                 "start": "2024-04-01T00:00:00+02:00",
                 "end": "2024-04-30T00:00:00+02:00",
                 "added": "2024-04-23T11:01:51.139599+02:00",
@@ -97,7 +97,7 @@ class TestPlantAPIView(APITestCase):
                 "frequency": self.plant2.frequency,
                 "volume": self.plant2.volume,
                 "instructions": self.plant2.instructions,
-                "status": "needs_watering",
+                "status": False,
             }
 
             plant_count = Plant.objects.all().count()
