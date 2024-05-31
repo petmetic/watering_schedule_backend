@@ -21,7 +21,6 @@ class Plant(models.Model):
         ("400_ml", "400 ml"),
         ("500_ml", "500 ml"),
     )
-    STATUS = (("watered", "watered"), ("needs_watering", "needs watering"))
 
     name = models.CharField(max_length=200, default="")
     location = models.CharField(
@@ -32,7 +31,7 @@ class Plant(models.Model):
     instructions = models.TextField(default="", blank=True)
     start = models.DateTimeField(blank=True, null=True)
     end = models.DateTimeField(blank=True, null=True)
-    status = models.CharField(max_length=100, choices=STATUS, default="needs watering")
+    status = models.BooleanField(default=False)
     photo = models.ImageField(max_length=None, default="", upload_to="uploads")
     added = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
