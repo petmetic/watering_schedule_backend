@@ -28,7 +28,7 @@ class PlantFactory(factory.django.DjangoModelFactory):
     instructions = factory.Faker("sentence")
     start = factory.Faker("date_time", tzinfo=tz)  # "%Y-%m-%d %H:%M:%S"
     end = factory.Faker("date_time", tzinfo=tz)  # "%Y-%m-%d %H:%M:%S"
-    status = "needs_watering"
+    status = factory.Faker("pybool")
     photo = factory.django.ImageField(
         from_path="./web/tests/assets/placeholder_square_10-10.png",
         color="blue",
